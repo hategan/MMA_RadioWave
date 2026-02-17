@@ -11,6 +11,8 @@ import numpy as np
 from jax.scipy.interpolate import RegularGridInterpolator
 from jax.numpy import interp
 
+from afterglowpy import jet
+
 
 def _get_filters(nu):
     """
@@ -30,9 +32,10 @@ def _get_filters(nu):
     filters = set()
     for freq in nu:
         fghz = freq / 1e9
-        if fghz < 1 or fghz > 10:
-            # something is off
-            raise RuntimeError(f'Could not process frequency bands: {nu}')
+        if fghz < 1.0 or fghz > 5e9:
+            # This isn't wrong, but too constraining since it doesn't account for
+            # redshift
+            raise RuntimeError(f'Invalid frequency band: {fghz} GHz. Fiesta requires >= 1GHz and <= 5e18 Hz')
         filters.add(f'radio-{fghz}GHz')
     return list(filters)
 
@@ -98,7 +101,7 @@ def _mag_abs_from_mag_app(mag_app, Z):
     return mag_app - 5.0 * np.log10(Z['d_L'] * 1e6 / 10.0)
 
 
-d_L_ref = 3.086e19
+d_L_ref = 3.086e19  # cm
 
 
 def _apply_redshift(x, nu, log_flux, model, Z):
@@ -128,7 +131,6 @@ def _apply_redshift(x, nu, log_flux, model, Z):
     :return:
         A redshifted flux.
     """
-
     # This seems somewhat faster on non-gpus than the fiesta's version below.
     # That's perhaps unsurprising, since the other one involves interpolating twice.
     mJys = np.exp(log_flux)
@@ -214,3 +216,4 @@ def fluxDensity(x: np.array, nu: np.array,
         An array with a flux for each pair (x[i], nu[i]).
     """
     return FiestaWrapper.flux_density(x, nu, model_name, **Z)
+
