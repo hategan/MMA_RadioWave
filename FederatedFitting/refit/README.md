@@ -24,7 +24,7 @@ To run, follow these steps:
     FIESTA = False  # This will use afterglowpy
     ```
 
-* Run the sampling:
+* Run the sampling (can be done *without* a GPU):
 
     ```bash
     cd template
