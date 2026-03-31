@@ -40,6 +40,12 @@ def _get_filters(nu):
     return list(filters)
 
 
+def _check_range(x: float, l: float, h: float) -> float:
+    if x < l or x > h:
+        raise RuntimeError(f'Range check error: {x} not in [{l}, {h}]')
+    return x
+
+
 def _params_afpy_to_fiesta(Z):
     """
     Converts a afterglowpy parameter dictionary to one suitable for Fiesta
@@ -59,14 +65,14 @@ def _params_afpy_to_fiesta(Z):
         An array that can be passed to Fiesta's FluxModel.predict_log_flux.
     """
     return np.array([
-        Z['thetaObs'],
-        math.log10(Z['E0']),
-        Z['thetaCore'],
-        Z['thetaWing'] / Z['thetaCore'],
-        math.log10(Z['n0']),
-        Z['p'],
-        math.log10(Z['epsilon_e']),
-        math.log10(Z['epsilon_B'])
+        _check_range(Z['thetaObs'], 0, math.pi / 2),
+        _check_range(math.log10(Z['E0']), 47, 57),
+        _check_range(Z['thetaCore'], 0.01, math.pi / 5),
+        _check_range(Z['thetaWing'] / Z['thetaCore'], 0.2, 3.5),
+        _check_range(math.log10(Z['n0']), -6, 2),
+        _check_range(Z['p'], 2, 3),
+        _check_range(math.log10(Z['epsilon_e']), -4, 0),
+        _check_range(math.log10(Z['epsilon_B']), -8, 0)
     ])
 
 
