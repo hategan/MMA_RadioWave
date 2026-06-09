@@ -38,7 +38,7 @@ class OctopusServerCommunicator:
         self.topic = f'{client.namespace}.{topic}'
 
         # Kafka producer for publishing messages
-        self.producer = KafkaProducer(self.topic, request_timeout_ms=3000000, delivery_timeout_ms=4000000, max_block_ms=3000000)
+        self.producer = KafkaProducer(self.topic)
 
         # Kafka consumer to listen for control events AND embeddings
         self.consumer = KafkaConsumer(
