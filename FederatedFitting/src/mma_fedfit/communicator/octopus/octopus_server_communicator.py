@@ -7,7 +7,7 @@ from mma_fedfit.agent import ServerAgent
 from mma_fedfit.logger import ServerAgentFileLogger
 from .utils import serialize_tensor_to_base64, deserialize_tensor_from_base64
 
-from diaspora_event_sdk import KafkaProducer, KafkaConsumer
+from diaspora_event_sdk import Client, KafkaProducer, KafkaConsumer
 from proxystore.proxy import Proxy, extract
 import threading
 import json
@@ -29,11 +29,16 @@ class OctopusServerCommunicator:
         self.server_agent = server_agent
         self.logger = logger if logger is not None else self._default_logger()
 
-        self.topic = self.server_agent.server_agent_config.server_configs.comm_configs.octopus_configs.topic
+        topic = self.server_agent.server_agent_config.server_configs.comm_configs.octopus_configs.topic
 
+        client = Client()
+        client.create_topic(topic)
+
+        # the Kafka topic is different from the Octopus topic
+        self.topic = f'{client.namespace}.{topic}'
 
         # Kafka producer for publishing messages
-        self.producer = KafkaProducer()
+        self.producer = KafkaProducer(self.topic, request_timeout_ms=3000000, delivery_timeout_ms=4000000, max_block_ms=3000000)
 
         # Kafka consumer to listen for control events AND embeddings
         self.consumer = KafkaConsumer(

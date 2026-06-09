@@ -6,7 +6,7 @@ from mma_fedfit.agent import ClientAgent
 from mma_fedfit.logger import ClientAgentFileLogger
 import numpy as np
 from .utils import serialize_tensor_to_base64, deserialize_tensor_from_base64
-from diaspora_event_sdk import KafkaProducer, KafkaConsumer
+from diaspora_event_sdk import Client, KafkaProducer, KafkaConsumer
 import torch
 import logging
 
@@ -30,11 +30,13 @@ class OctopusClientCommunicator:
         self.logger = logger if logger is not None else self._default_logger()
         
 
-        self.topic = self.client_agent.client_agent_config.comm_configs.octopus_configs.topic
+        client = Client()
+        topic = self.client_agent.client_agent_config.comm_configs.octopus_configs.topic
+        self.topic = f'{client.namespace}.{topic}'
 
 
         # Kafka producer for control messages and sending Embeddings
-        self.producer = KafkaProducer()
+        self.producer = KafkaProducer(self.topic)
 
 
         client_group_id = self.client_agent.client_agent_config.comm_configs.octopus_configs.group_id
