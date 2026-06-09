@@ -178,7 +178,7 @@ def interpret(data, client_agent_config):
     elif "seconds" in data.columns:
         data["t"] = data["seconds"]
     else:
-        sys.exit("Error: no time column in data. Need either seconds or days.")
+        raise RuntimeError("Error: no time column in data. Need either seconds or days.")
      
     # if "Filter" in data.columns:
     #     data["filter"] = data["Filter"]
@@ -194,7 +194,7 @@ def interpret(data, client_agent_config):
         data["frequency"] = data["Hz"]
         freq_correct = 1
     else:
-        sys.exit("Error: no frequency column in data. Need either Hz or GHz.")
+        raise RuntimeError("Error: no frequency column in data. Need either Hz or GHz.")
     
     if "microJy" in data.columns:
         data["flux"] = data["microJy"]
@@ -206,7 +206,7 @@ def interpret(data, client_agent_config):
         data["flux"] = data["mJy"]
         flux_correct = 1
     else:
-        sys.exit("Error: no flux density column in data. Need mJy, microJy, or Jy.")
+        raise RuntimeError("Error: no flux density column in data. Need mJy, microJy, or Jy.")
 
     #use the RA and Dec radius:
     indices_not_flagged_for_exclusion_RA_Dec = process_RA_Dec_constraints(data, client_agent_config)
