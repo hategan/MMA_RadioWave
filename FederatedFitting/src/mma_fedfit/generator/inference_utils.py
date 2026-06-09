@@ -190,7 +190,7 @@ def interpret(data, client_agent_config):
     if "GHz" in data.columns:
         data["frequency"] = data["GHz"]
         freq_correct = 1e9
-    if "Hz" in data.columns:
+    elif "Hz" in data.columns:
         data["frequency"] = data["Hz"]
         freq_correct = 1
     else:
