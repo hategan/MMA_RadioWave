@@ -152,7 +152,10 @@ def process_flags(data, client_agent_config):
         flags = np.asarray(flags)
 
         #The total number of flags in this data point (6 possible)
-        total_flags = data.iloc[i]["time_flag"] + data.iloc[i]["freq_flag"] + data.iloc[i]["name_flag"] + data.iloc[i]["uncertainty_flag"] + data.iloc[i]["RA_Dec_flag"] + data.iloc[i]["FD_flag"]
+        total_flags = 0
+        for flag_name in ['time_flag', 'freq_flag', 'name_flag', 'uncertainty_flag', 'RA_Dec_flag', 'FD_flag']:
+            if flag_name in data.iloc[i]:
+                total_flags += data.iloc[i][flag_name]
 
 
         #This means it contains a nonzero flag, which the user has set to exclude
