@@ -1,8 +1,0 @@
-[2025-05-28 10:09:08,342 INFO server]: Logging to /u/parthpatel7173/MMA_RadioWave/FederatedFitting/examples/output/pf_2site_distributed_Server_2025-05-28-10:09:08.txt
-[2025-05-28 10:09:08,357 INFO server]: Running sum of log likelihood approach
-[2025-05-28 10:09:08,748 INFO server]: [Server] Published ServerStarted event with config.
-[2025-05-28 10:09:08,748 INFO server]: [Server] Waiting for 2 SiteReady msgs…
-[2025-05-28 10:09:13,574 INFO server]: [Server] Site 0 ready -> has_data=False, n_data_points=0, day_threshold=3 
-[2025-05-28 10:09:13,575 INFO server]: [Server] Site 1 ready -> has_data=False, n_data_points=0, day_threshold=3 
-[2025-05-28 10:09:13,575 INFO server]: [Server] All sites responded — but none have usable data. Skipping MCMC.
-[2025-05-28 10:09:13,600 INFO server]: [Server] Broadcasted empty AggregationDone due to lack of data.

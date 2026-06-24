@@ -1,9 +1,0 @@
-[2025-05-27 23:36:56,729 INFO server]: Logging to /u/parthpatel7173/MMA_RadioWave/FederatedFitting/examples/output/pf_2site_consensus_Server_2025-05-27-23:36:56.txt
-[2025-05-27 23:36:57,393 INFO server]: [Server] Published ServerStarted event with config.
-[2025-05-27 23:36:57,393 INFO server]: [Server] Listening for messages...
-[2025-05-27 23:37:02,300 INFO server]: [Server] Site 0 ready -> has_data=False, n_data_points=0, day_threshold=3 
-[2025-05-27 23:37:02,300 INFO server]: [Server] Site 0 skipped MCMC — no data
-[2025-05-27 23:37:02,300 INFO server]: [Server] Received Skipped from site 0 — no data
-[2025-05-27 23:37:02,300 INFO server]: [Server] Site 1 ready -> has_data=False, n_data_points=0, day_threshold=3 
-[2025-05-27 23:37:02,300 INFO server]: [Server] All sites responded — but none have usable data. Skipping MCMC.
-[2025-05-27 23:37:02,324 INFO server]: [Server] Broadcasted empty AggregationDone due to lack of data.

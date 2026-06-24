@@ -1,4 +1,0 @@
-[2025-06-24 10:17:46,330 INFO server]: Logging to /u/parthpatel7173/MMA_RadioWave/FederatedFitting/examples/output/pf_8sites_distributed_dayAll_resilientrun3_Server_2025-06-24-10:17:46.txt
-[2025-06-24 10:17:46,341 INFO server]: Running sum of log likelihood approach
-[2025-06-24 10:17:46,799 INFO server]: [Server] Published ServerStarted event with config.
-[2025-06-24 10:17:46,799 INFO server]: [Server] Waiting for 7 SiteReady msgs…

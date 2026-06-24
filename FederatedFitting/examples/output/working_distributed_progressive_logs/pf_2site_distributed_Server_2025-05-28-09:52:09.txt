@@ -1,4 +1,0 @@
-[2025-05-28 09:52:09,398 INFO server]: Logging to /u/parthpatel7173/MMA_RadioWave/FederatedFitting/examples/output/pf_2site_distributed_Server_2025-05-28-09:52:09.txt
-[2025-05-28 09:52:09,462 INFO server]: Running sum of log likelihood approach
-[2025-05-28 09:52:10,247 INFO server]: [Server] Published ServerStarted event with config.
-[2025-05-28 09:52:10,247 INFO server]: [Server] Waiting for 2 SiteReady msgs…

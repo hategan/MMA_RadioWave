@@ -1,2 +1,0 @@
-from .ConsensusMCMC_aggregator import ConsensusAggregator
-from .DistributedMCMC_aggregator import DistributedMCMCAggregator

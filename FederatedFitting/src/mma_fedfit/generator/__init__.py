@@ -1,1 +1,0 @@
-from .FedFit_generator import LocalGenerator
