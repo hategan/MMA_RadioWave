@@ -6,7 +6,7 @@ import astropy.units as u
 
 
 class Afterglowpy(Model):
-    def flux_density(self, x: np.array, nu: np.array, Z: Dict[str, float]) -> float:
+    def flux_density(self, x: np.array, nu: np.array, Z: Dict[str, float]) -> np.array:
         # canonical parameters are
         # PARAMS = ['thetaObs', 'thetaCore', 'thetaWing', 'p', 'logE0', 'logn0', 'xiN',
         #                   'logEpsilon_e',

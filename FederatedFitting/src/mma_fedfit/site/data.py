@@ -119,11 +119,12 @@ class DataProcessor:
 
         rows = []
 
-
-        # check that all columns are there
+        # Keep track of what columns are there
         seen_cols = set()
         for col, (unit, dst_col) in DataProcessor.CONVERSIONS.items():
-            seen_cols.add(dst_col)
+            if col in data.columns:
+                seen_cols.add(dst_col)
+
         for col in DataProcessor.COLUMNS.keys():
             if not col in seen_cols:
                 raise ValueError('Missing a {col} column in data.')
@@ -139,7 +140,7 @@ class DataProcessor:
                         # special handling for error bars and limits
                         # possible formats:
                         #   < upper_limit
-                        #   > lower)limit
+                        #   > lower_limit
                         #   val ± err
                         #   val +- err
                         #       we process these
