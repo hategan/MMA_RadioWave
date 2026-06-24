@@ -1,4 +1,13 @@
 matplotlib==3.9.0
 omegaconf==2.3.0
-numpy==1.24.2
+numpy
 jupyter
+afterglowpy
+astropy
+emcee
+torch
+pandas
+corner
+diaspora_event_sdk
+blosc
+fiestaEM
