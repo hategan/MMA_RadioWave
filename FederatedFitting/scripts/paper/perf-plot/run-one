@@ -5,7 +5,7 @@ set -e
 
 export PYTHONPATH=`pwd`/../../../src:$PYTHONPATH
 
-python ../../../examples/octopus/run_site.py --config site.yaml &
+python ../../../bin/run_site.py --config site.yaml &
 SPID=`jobs -p 1`
 echo "Site PID is $SPID"
 
@@ -17,7 +17,7 @@ trap cleanup SIGINT
 
 sleep 10
 
-python ../../../examples/octopus/run_server.py --config server.yaml
+python ../../../bin/run_server.py --config server.yaml
 
 
 cleanup
