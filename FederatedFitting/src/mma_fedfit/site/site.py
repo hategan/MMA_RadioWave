@@ -46,6 +46,7 @@ def parse_td(td: str | int) -> timedelta:
     if suffix == 'd':
         return timedelta(days=num)
 
+
 class Likelihood:
     def __init__(self, t, nu, fnu, err, fixed_params, model):
         self.t = t
@@ -59,7 +60,7 @@ class Likelihood:
         Z.update(self.fixed_params)
         fnu = self.model.flux_density(self.t, self.nu, Z)
         sigma2 = self.err ** 2
-        return -0.5 * np.sum((fnu - fnu) ** 2 / sigma2 + np.log10(sigma2))
+        return -0.5 * np.sum((fnu - self.fnu) ** 2 / sigma2 + np.log10(sigma2))
 
 
 class Run:
